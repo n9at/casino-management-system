@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Gier</title>
+</head>
+<body>
+    <p><a href="/">Powrót do menu głównego</a></p>
+    
+    <h2>Zarządzanie Grami</h2>
+
+    <form method="GET" action="/gry">
+        <label>Wyszukaj grę:</label>
+        <input type="text" name="search" value="{{ search }}" placeholder="Nazwa lub typ...">
+        <button type="submit">Filtruj</button>
+        <a href="/gry">Resetuj filtry</a>
+    </form>
+
+    <br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nazwa Gry</th>
+                <th>Typ</th>
+                <th>Minimalna Stawka</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for gra in gry %}
+            <tr>
+                <td>{{ gra.id_gry }}</td>
+                <td>{{ gra.nazwa }}</td>
+                <td>{{ gra.typ }}</td>
+                <td>{{ gra.min_stawka }} PLN</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">Brak gier pasujących do zapytania.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
